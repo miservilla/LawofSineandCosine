@@ -60,15 +60,14 @@ public class Main {
         c = sc.nextDouble();
 
 
-
-        if (A > 0 && B > 0 && a > 0){
+        if (A > 0 && B > 0 && a > 0) {
             double[] aasResult = AAS(A, B, a);
-            System.out.println("A = " + A  + " B = " + B + " C = " + aasResult[1]);
-            System.out.println("a = " + a  + " b = " + aasResult[0] + " c = " + aasResult[2]);
-        } else if (A > 0 && B > 0 && b > 0){
+            System.out.println("A = " + A + " B = " + B + " C = " + aasResult[1]);
+            System.out.println("a = " + a + " b = " + aasResult[0] + " c = " + aasResult[2]);
+        } else if (A > 0 && B > 0 && b > 0) {
             double[] aasResult = AAS(B, A, b);
-            System.out.println("A = " + A  + " B = " + B + " C = " + aasResult[1]);
-            System.out.println("a = " + aasResult[0]  + " b = " + b + " c = " + aasResult[2]);
+            System.out.println("A = " + A + " B = " + B + " C = " + aasResult[1]);
+            System.out.println("a = " + aasResult[0] + " b = " + b + " c = " + aasResult[2]);
         } else if (A > 0 && C > 0 && a > 0) {
             double[] aasResult = AAS(A, C, a);
             System.out.println("A = " + A + " B = " + aasResult[1] + " C = " + C);
@@ -89,15 +88,62 @@ public class Main {
             double[] assResult = ASS(A, a, b);
             System.out.println("A = " + A + " B = " + assResult[0] + " C = " + assResult[1]);
             System.out.println("a = " + a + " b = " + b + " c = " + assResult[2]);
-            if ((180 - assResult[0] + A < 180)){
+            if ((180 - assResult[0] + A < 180)) {
                 double[] aasResult = AAS(A, 180 - assResult[0], a);
                 System.out.printf(" -or- \n");
-                System.out.println("A = " + A  + " B = " + (180 - assResult[0]) + " C = " + aasResult[1]);
-                System.out.println("a = " + a  + " b = " + aasResult[0] + " c = " + aasResult[2]);
+                System.out.println("A = " + A + " B = " + (180 - assResult[0]) + " C = " + aasResult[1]);
+                System.out.println("a = " + a + " b = " + aasResult[0] + " c = " + aasResult[2]);
             }
-
+        } else if (A > 0 && a > 0 && c > 0) {
+            double[] assResult = ASS(A, a, c);
+            System.out.println("A = " + A + " B = " + assResult[1] + " C = " + assResult[0]);
+            System.out.println("a = " + a + " b = " + assResult[2] + " c = " + c);
+            if ((180 - assResult[0] + A < 180)) {
+                double[] aasResult = AAS(A, 180 - assResult[0], a);
+                System.out.printf(" -or- \n");
+                System.out.println("A = " + A + " B = " + (180 - assResult[0]) + " C = " + aasResult[1]);
+                System.out.println("a = " + a + " b = " + aasResult[0] + " c = " + aasResult[2]);
             }
-
-
+        } else if (B > 0 && b > 0 && a > 0) {
+            double[] assResult = ASS(B, b, a);
+            System.out.println("A = " + assResult[0] + " B = " + B + " C = " + assResult[1]);
+            System.out.println("a = " + a + " b = " + b + " c = " + assResult[2]);
+            if ((180 - assResult[0] + B < 180)) {
+                double[] aasResult = AAS(B, 180 - assResult[0], b);
+                System.out.printf(" -or- \n");
+                System.out.println("A = " + (180 - assResult[0]) + " B = " + B + " C = " + aasResult[1]);
+                System.out.println("a = " + a + " b = " + aasResult[0] + " c = " + aasResult[2]);
+            }
+        } else if (B > 0 && b > 0 && c > 0) {
+            double[] assResult = ASS(B, b, c);
+            System.out.println("A = " + assResult[1] + " B = " + B + " C = " + assResult[0]);
+            System.out.println("a = " + assResult[2] + " b = " + b + " c = " + c);
+            if ((180 - assResult[0] + B < 180)) {
+                double[] aasResult = AAS(B, 180 - assResult[0], b);
+                System.out.printf(" -or- \n");
+                System.out.println("A = " + (180 - assResult[0]) + " B = " + B + " C = " + aasResult[1]);
+                System.out.println("a = " + aasResult[2] + " b = " + aasResult[0] + " c = " + c);
+            }
+        } else if (C > 0 && c > 0 && a > 0) {
+            double[] assResult = ASS(C, c, a);
+            System.out.println("A = " + assResult[0] + " B = " + assResult[1] + " C = " + C);
+            System.out.println("a = " + a + " b = " + assResult[2] + " c = " + c);
+            if ((180 - assResult[0] + C < 180)) {
+                double[] aasResult = AAS(C, 180 - assResult[0], c);
+                System.out.printf(" -or- \n");
+                System.out.println("A = " + (180 - assResult[0]) + " B = " + aasResult[1] + " C = " + C);
+                System.out.println("a = " + aasResult[0] + " b = " + aasResult[2] + " c = " + c);
+            }
+        } else if (C > 0 && c > 0 && b > 0) {
+            double[] assResult = ASS(C, c, b);
+            System.out.println("A = " + assResult[1] + " B = " + assResult[0] + " C = " + C);
+            System.out.println("a = " + assResult[2] + " b = " + b + " c = " + c);
+            if ((180 - assResult[0] + C < 180)) {
+                double[] aasResult = AAS(C, 180 - assResult[0], c);
+                System.out.printf(" -or- \n");
+                System.out.println("A = " + aasResult[1] + " B = " + (180 - assResult[0]) + " C = " + C);
+                System.out.println("a = " + aasResult[2] + " b = " + aasResult[0] + " c = " + c);
+            }
+        }
     }
 }
