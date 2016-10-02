@@ -24,12 +24,21 @@ public class Main {
     }
     public static double[] ASS(double knownAngle1, double correspondingSideToKnownAngle1, double correspondingSideToUnKnownAngle2){
         double[] assResult = new double[3];
-        double A = (Math.sin(Math.toRadians(knownAngle1)));
-        double B = Math.toDegrees(Math.asin((correspondingSideToUnKnownAngle2 * A) / (correspondingSideToKnownAngle1)));
+//        double A = (Math.sin(Math.toRadians(knownAngle1)));
+//        double B = Math.toDegrees(Math.asin((correspondingSideToUnKnownAngle2 * A) / (correspondingSideToKnownAngle1)));
         assResult[0] = Math.toDegrees(Math.asin((correspondingSideToUnKnownAngle2 * (Math.sin(Math.toRadians(knownAngle1)))) / (correspondingSideToKnownAngle1)));
         assResult[1] = 180 - assResult[0] - knownAngle1;
         assResult[2] = ((Math.sin(Math.toRadians(assResult[1])) * correspondingSideToKnownAngle1)) / (Math.sin(Math.toRadians(knownAngle1)));
         return assResult;
+    }
+    public static double SSS(double segment1, double segment2, double segment3){
+        double A =Math.toDegrees(Math.acos(((segment1 * segment1) - (segment2 * segment2) - (segment3 * segment3))/(-2 * segment2 * segment3)));
+        return A;
+    }
+    public static double SAS(double knownAngle1, double correspondingSideToUnKnownAngle2, double correspondingSideToUnKnownAngle3){
+        double correspondingSideToKnownAngle1 = Math.sqrt(((Math.pow(correspondingSideToUnKnownAngle2, 2)) +
+                (Math.pow(correspondingSideToUnKnownAngle3, 2))) - (2 * correspondingSideToUnKnownAngle2 * correspondingSideToUnKnownAngle3 * Math.cos(Math.toRadians(knownAngle1))));
+        return correspondingSideToKnownAngle1;
     }
 
 //    public static void printAngle(int A, int B, int a){
@@ -143,6 +152,50 @@ public class Main {
                 System.out.printf(" -or- \n");
                 System.out.println("A = " + aasResult[1] + " B = " + (180 - assResult[0]) + " C = " + C);
                 System.out.println("a = " + aasResult[2] + " b = " + b + " c = " + c);
+            }
+        } else if (a > 0 && b > 0 && c > 0) {//(abc)
+            A = SSS(a, b, c);
+            double[] assResult = ASS(A, a, b);
+            System.out.println("A = " + A + " B = " + assResult[0] + " C = " + assResult[1]);
+            System.out.println("a = " + a + " b = " + b + " c = " + c);
+            if ((180 - assResult[0] + A < 180)) {
+                double[] aasResult = AAS(A, 180 - assResult[0], a);
+                System.out.printf(" -or- \n");
+                System.out.println("A = " + A + " B = " + (180 - assResult[0]) + " C = " + aasResult[1]);
+                System.out.println("a = " + a + " b = " + b + " c = " + c);
+            }
+        } else if (A > 0 && b > 0 && c > 0) {//(Abc)
+            a = SAS(A, b, c);
+            double[] assResult = ASS(A, a, b);
+            System.out.println("A = " + A + " B = " + assResult[0] + " C = " + assResult[1]);
+            System.out.println("a = " + a + " b = " + b + " c = " + c);
+            if ((180 - assResult[0] + A < 180)) {
+                double[] aasResult = AAS(A, 180 - assResult[0], a);
+                System.out.printf(" -or- \n");
+                System.out.println("A = " + A + " B = " + (180 - assResult[0]) + " C = " + aasResult[1]);
+                System.out.println("a = " + a + " b = " + b + " c = " + c);
+            }
+        } else if (B > 0 && a > 0 && c > 0) {//(Bac)
+            b = SAS(B, a, c);
+            double[] assResult = ASS(B, b, c);
+            System.out.println("A = " + assResult[1] + " B = " + B + " C = " + assResult[0]);
+            System.out.println("a = " + assResult[2] + " b = " + b + " c = " + c);
+            if ((180 - assResult[0] + B < 180)) {
+                double[] aasResult = AAS(B, 180 - assResult[0], b);
+                System.out.printf(" -or- \n");
+                System.out.println("A = " + aasResult[1] + " B = " + B + " C = " + (180 - assResult[0]));
+                System.out.println("a = " + a + " b = " + b + " c = " + c);
+            }
+        } else {//(Cba)
+            c = SAS(C, b, a);
+            double[] assResult = ASS(C, c, a);
+            System.out.println("A = " + assResult[0] + " B = " + assResult[1] + " C = " + C);
+            System.out.println("a = " + a + " b = " + b + " c = " + c);
+            if ((180 - assResult[0] + C < 180)) {
+                double[] aasResult = AAS(C, 180 - assResult[0], c);
+                System.out.printf(" -or- \n");
+                System.out.println("A = " + (180 - assResult[0]) + " B = " + aasResult[1] + " C = " + C);
+                System.out.println("a = " + a + " b = " + b + " c = " + c);
             }
         }
     }
