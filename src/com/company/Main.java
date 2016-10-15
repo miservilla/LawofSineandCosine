@@ -93,15 +93,15 @@ public class Main {
             double[] aasResult = AAS(C, A, c);
             System.out.println("A = " + A + " B = " + aasResult[1] + " C = " + C);
             System.out.println("a = " + aasResult[0] + " b = " + aasResult[2] + " c = " + c);
-        } else if (B > 0 && C > 0 && a > 0) {//(BCa) THIS IS THE ADDITIONAL CONDITION!
+        } else if (B > 0 && C > 0 && a > 0) {//(BaC) THIS IS THE ADDITIONAL CONDITION!
             double[] asaResult = ASA(B, C, a);
             System.out.println("A = " + asaResult[1] + " B = " + B + " C = " + C);
             System.out.println("a = " + a + " b = " + asaResult[2] + " c = " + asaResult[0]);
-        } else if (A > 0 && B > 0 && c > 0) {//(ABc) THIS IS THE ADDITIONAL CONDITION #2!
+        } else if (A > 0 && B > 0 && c > 0) {//(AcB) THIS IS THE ADDITIONAL CONDITION #2!
             double[] asaResult = ASA(A, B, c);
             System.out.println("A = " + A + " B = " + B + " C = " + asaResult[1]);
             System.out.println("a = " + asaResult[2] + " b = " + asaResult[0] + " c = " + c);
-        } else if (A > 0 && C > 0 && b > 0) {//(ACb) THIS IS THE ADDITIONAL CONDITION #3!
+        } else if (A > 0 && C > 0 && b > 0) {//(AbC) THIS IS THE ADDITIONAL CONDITION #3!
             double[] asaResult = ASA(A, C, b);
             System.out.println("A = " + A + " B = " + asaResult[1] + " C = " + C);
             System.out.println("a = " + asaResult[2] + " b = " + b + " c = " + asaResult[0]);
