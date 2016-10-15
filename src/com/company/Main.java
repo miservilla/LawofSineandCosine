@@ -40,6 +40,14 @@ public class Main {
                 (Math.pow(correspondingSideToUnKnownAngle3, 2))) - (2 * correspondingSideToUnKnownAngle2 * correspondingSideToUnKnownAngle3 * Math.cos(Math.toRadians(knownAngle1))));
         return correspondingSideToKnownAngle1;
     }
+    public static double[] ASA(double knownAngle1, double knownAngle2, double correspondingSideToUnKnownAngle3){
+        double[] asaResult = new double[3];
+        double knownAngle3 = 180 - knownAngle1 - knownAngle2;
+        asaResult[0] = ((Math.sin(Math.toRadians(knownAngle2)) * correspondingSideToUnKnownAngle3)) / (Math.sin(Math.toRadians(knownAngle3))); //Result to side c.
+        asaResult[1] = knownAngle3; //Result to angle 3.
+        asaResult[2] = ((Math.sin(Math.toRadians(knownAngle1)) * correspondingSideToUnKnownAngle3)) / (Math.sin(Math.toRadians(knownAngle3))); //Result to side b.
+        return asaResult;
+    }
 
 //    public static void printAngle(int A, int B, int a){
 //        System.out.println("A = " + A  + " B = " + B + " C = " + aasResult[1]);
@@ -85,6 +93,18 @@ public class Main {
             double[] aasResult = AAS(C, A, c);
             System.out.println("A = " + A + " B = " + aasResult[1] + " C = " + C);
             System.out.println("a = " + aasResult[0] + " b = " + aasResult[2] + " c = " + c);
+        } else if (B > 0 && C > 0 && a > 0) {//(BCa) THIS IS THE ADDITIONAL CONDITION!
+            double[] asaResult = ASA(B, C, a);
+            System.out.println("A = " + asaResult[1] + " B = " + B + " C = " + C);
+            System.out.println("a = " + a + " b = " + asaResult[2] + " c = " + asaResult[0]);
+        } else if (A > 0 && B > 0 && c > 0) {//(ABc) THIS IS THE ADDITIONAL CONDITION #2!
+            double[] asaResult = ASA(A, B, c);
+            System.out.println("A = " + A + " B = " + B + " C = " + asaResult[1]);
+            System.out.println("a = " + asaResult[2] + " b = " + asaResult[0] + " c = " + c);
+        } else if (A > 0 && C > 0 && b > 0) {//(ACb) THIS IS THE ADDITIONAL CONDITION #3!
+            double[] asaResult = ASA(A, C, b);
+            System.out.println("A = " + A + " B = " + asaResult[1] + " C = " + C);
+            System.out.println("a = " + asaResult[2] + " b = " + b + " c = " + asaResult[0]);
         } else if (B > 0 && C > 0 && b > 0) {//(BCb)
             double[] aasResult = AAS(B, C, b);
             System.out.println("A = " + aasResult[1] + " B = " + B + " C = " + C);
