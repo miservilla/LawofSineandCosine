@@ -184,28 +184,21 @@ public class Main {
                 System.out.println("A = " + A + " B = " + (180 - assResult[0]) + " C = " + aasResult[1]);
                 System.out.println("a = " + a + " b = " + b + " c = " + c);
             }
-        } else if (A > 0 && b > 0 && c > 0) {//(Abc)
+        } else if (A > 0 && b > 0 && c > 0) {//(bAc)//No ambiguous case, angle is between two sides.
             a = SAS(A, b, c);
             double[] assResult = ASS(A, a, b);
             System.out.println("A = " + A + " B = " + assResult[0] + " C = " + assResult[1]);
             System.out.println("a = " + a + " b = " + b + " c = " + c);
-            if ((180 - assResult[0] + A < 180)) {
-                double[] aasResult = AAS(A, 180 - assResult[0], a);
-                System.out.printf(" -or- \n");
-                System.out.println("A = " + A + " B = " + (180 - assResult[0]) + " C = " + aasResult[1]);
-                System.out.println("a = " + a + " b = " + b + " c = " + c);
-            }
-        } else if (B > 0 && a > 0 && c > 0) {//(Bac)
+        } else if (B > 0 && a > 0 && c > 0) {//(aBc)//No ambiguous case, angle is between two sides.
             b = SAS(B, a, c);
             double[] assResult = ASS(B, b, c);
             System.out.println("A = " + assResult[1] + " B = " + B + " C = " + assResult[0]);
             System.out.println("a = " + assResult[2] + " b = " + b + " c = " + c);
-            if ((180 - assResult[0] + B < 180)) {
-                double[] aasResult = AAS(B, 180 - assResult[0], b);
-                System.out.printf(" -or- \n");
-                System.out.println("A = " + aasResult[1] + " B = " + B + " C = " + (180 - assResult[0]));
-                System.out.println("a = " + a + " b = " + b + " c = " + c);
-            }
+        } else if (C > 0 && a > 0 && b > 0) {//(aCb)//No ambiguous case, angle is between two sides.
+            c = SAS(C, a, b);
+            double[] assResult = ASS(C, c, b);
+            System.out.println("A = " + assResult[1] + " B = " + assResult[0] + " C = " + C);
+            System.out.println("a = " + assResult[2] + " b = " + b + " c = " + c);
         } else {//(Cba)
             c = SAS(C, b, a);
             double[] assResult = ASS(C, c, a);
